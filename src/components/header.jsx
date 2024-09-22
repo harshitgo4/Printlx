@@ -73,10 +73,12 @@ const Navbar = () => {
 
       {isMobileMenuOpen && (
         <nav className="md:hidden bg-white text-gray-800 fixed top-0 left-0 h-full w-full z-20 py-4 border-b border-gray-300">
-          <div className="text-center font-bold text-lg mb-4">Menu</div>
-          <button className="absolute top-2 right-2 text-gray-800 focus:outline-none" onClick={toggleMobileMenu}>
-            <FaTimes className="w-6 h-6" />
-          </button>
+          <div className="flex justify-between items-center px-4">
+            <div className="text-center font-bold text-lg mb-4">Menu</div>
+            <button className="text-gray-800 focus:outline-none" onClick={toggleMobileMenu}>
+              <FaTimes className="w-6 h-6" />
+            </button>
+          </div>
           <div className="text-center mb-4">
             <a href="/" className="text-2xl font-bold">Logo</a>
           </div>
@@ -122,7 +124,7 @@ const Navbar = () => {
           {/* Auth Buttons in Mobile Menu */}
           <div className="mt-8 text-center ">
             <a href="/app/auth/login" className="mx-4 bg-green-600 hover:bg-green-500 text-white px-4 py-2 rounded">Log in</a>
-            <a href="/app/auth/register" className=" mx-4 border border-green-600 hover:bg-green-500 text-green-600 hover:text-white px-4 py-2 rounded">Sign up</a>
+            <a href="/app/auth/register" className="mx-4 border border-green-600 hover:bg-green-500 text-green-600 hover:text-white px-4 py-2 rounded">Sign up</a>
           </div>
         </nav>
       )}
