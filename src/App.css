@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+/* Add this to your main CSS file */
+.media-scroller {
+  padding-left: 1rem; /* Tailwind spacing */
+  padding-right: 1rem; /* Tailwind spacing */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-inline: contain;
+}
+
+.media-element {
+  scroll-snap-align: start;
+}
+
+.container {
+  max-width: 70rem; /* Tailwind max-width utility */
+  margin: 0 auto; /* Centering */
+}
+
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
