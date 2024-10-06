@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.css'; // Import Swiper styles
+import { Navigation, Pagination } from 'swiper/modules'; // Import Swiper modules
+import './reviews.css'
+// Full reviews data
 const reviews = [
   {
     name: 'Robert A. Voltaire',
@@ -38,87 +42,50 @@ const reviews = [
   },
 ];
 
+
 const Reviews = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextReview = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-  };
-
-  const prevReview = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-  };
-
   return (
     <div className="bg-gray-50 py-10 px-4">
-        <h2 className='text-3xl md:text-6xl text-pretty text-center font-extrabold font-serif m-8'>
-            Testimonials
-        </h2>
-        <div className='flex justify-start items-center gap-10 mt-10'>
-
-      <h2 className=" text-xl md:text-3xl font-bold text-center mb-6 max-w-80">
-        Trusted by over 8M sellers around the world
+      <h2 className="text-3xl md:text-6xl text-pretty text-center font-extrabold font-serif m-8">
+        Testimonials
       </h2>
-      <p className="text-center text-sm md:text-lg mb-10 max-w-80">
-        Whether you are just getting started or run an enterprise-level e-commerce business, we do everything we can to ensure a positive merchant experience.
-      </p>
-        </div>
-      <div className="flex justify-between items-center mb-4">
-        <button onClick={prevReview} className="bg-gray-200 text-gray-700 rounded-full w-12 h-12 flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button onClick={nextReview} className="bg-gray-200 text-gray-700 rounded-full w-12 h-12 flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
+
+      <div className="text-center max-w-2xl mx-auto">
+        <h2 className="text-xl md:text-3xl font-bold mb-6">
+          Trusted by over 8M sellers around the world
+        </h2>
+        <p className="text-sm md:text-lg mb-10">
+          Whether you are just getting started or run an enterprise-level e-commerce business, we do everything we can to ensure a positive merchant experience.
+        </p>
       </div>
-      <div className="flex space-x-4 overflow-hidden transition-transform duration-300 ease-in-out">
-        {reviews.slice(currentIndex, currentIndex + (window.innerWidth < 640 ? 1 : 3)).map((review, index) => (
-          <div
-            key={index}
-            className="bg-white rounded-lg shadow-md p-6 flex flex-col justify-between w-full max-w-sm transition-transform duration-300 ease-in-out"
-          >
-            <div className="flex items-center mb-4">
-              <img
-                src={review.avatar}
-                alt={review.name}
-                className="w-12 h-12 rounded-full mr-4"
-              />
-              <div>
-                <h4 className="text-xl font-semibold">{review.name}</h4>
-                <a
-                  href={review.storeLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 text-sm"
-                >
-                  Store link
-                </a>
+
+      {/* Swiper Slider */}
+      <div className="max-w-4xl mx-auto">
+        <Swiper
+          spaceBetween={10} // Space between slides
+          slidesPerView={3} // Default slides to show
+          navigation // Enable navigation buttons
+          pagination={{ clickable: true }} // Enable pagination
+          modules={[Navigation, Pagination]} // Add the modules here
+          breakpoints={{
+            1024: {
+              slidesPerView: 2, // Show 2 slides at 1024px
+            },
+            768: {
+              slidesPerView: 1, // Show 1 slide at 768px
+            },
+          }}
+        >
+          {reviews.map((review, index) => (
+            <SwiperSlide key={index} className="bg-black text-white p-6 rounded-lg shadow-lg flex flex-col justify-between min-h-72">
+              <div className="flex justify-center items-center mb-4">
+                <img src={review.avatar} alt={review.name} className="h-16 w-16 rounded-full" />
               </div>
-            </div>
-            <p className="text-gray-600">{review.comment}</p>
-            <div className="flex mt-2">
-              {Array.from({ length: review.rating }).map((_, starIndex) => (
-                <span key={starIndex} className="text-yellow-500">★</span>
-              ))}
-            </div>
-          </div>
-        ))}
+              <h3 className="text-lg font-semibold">{review.name}</h3>
+              <p className="mt-2 flex-1">{review.comment}</p>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
     </div>
   );

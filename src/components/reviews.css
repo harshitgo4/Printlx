@@ -1,0 +1,23 @@
+/* Custom styles for Swiper navigation arrows */
+.swiper-button-next,
+.swiper-button-prev {
+  color: white; /* Change arrow color to white */
+  width: 30px;  /* Set width of arrows */
+  height: 30px; /* Set height of arrows */
+  background: rgba(0, 0, 0, 0.5); /* Optional: background color for visibility */
+  border-radius: 50%; /* Optional: round shape for the arrows */
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px; /* Adjust arrow size */
+  line-height: 30px; /* Center the icon */
+}
+
+.swiper-button-next {
+  right: 10px; /* Adjust position to the right */
+}
+
+.swiper-button-prev {
+  left: 10px; /* Adjust position to the left */
+}
